@@ -25,8 +25,15 @@ class PublisherCMD(Node):
     # Define the callback function that will be called by the timer
     def timer_callback(self):
         
+        # Linear velocity 
         msg = Twist() # Create a new Twist message
         msg.linear.x = 0.1 # Set the linear x component of the message to 0.1
+        self.publisher_.publish(msg) # Publish the message to the '/cmd_vel' topic
+        self.get_logger().info('Publishing: "%s"' % msg) # Log the published message
+        
+        # Angular velocity
+        msg = Twist() # Create a new Twist message
+        msg.angular.x = 0.1 # Set the angular xy component of the message to 0.1
         self.publisher_.publish(msg) # Publish the message to the '/cmd_vel' topic
         self.get_logger().info('Publishing: "%s"' % msg) # Log the published message
 
